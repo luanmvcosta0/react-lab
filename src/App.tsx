@@ -1,17 +1,44 @@
-import { Header } from './components/header'
-import { Aluno } from './components/aluno'
-import { Footer} from './components/footer' 
+import { useState } from 'react'
 
 export default function App() {
+  const[input, setInput] = useState("")
+  const[idade, setIdade] = useState("")
+  const[aluno, setAluno] = useState<string | number>("Sem nome")
+  const[alunoIdade, setAlunoIdade] = useState("")
+
+  function mostrarAluno() {
+    setAluno(input)
+    setAlunoIdade(idade)
+  }
+
   return(
     <div>
-      <Header title='Bem vindos ao Athletes!'/>
+      <h1>Conhecendo UseState</h1>
 
-      <Aluno nome="Leticia Buled" idade={24}/>
-      <Aluno nome="Luan Costa" idade={21}/>
-      <Aluno nome="Lucca Costa" idade={12}/>
+      <input 
+      placeholder="Digite o nome"
+      value={input}
+      onChange={ (e) => setInput(e.target.value) }
+      />
 
-      <Footer/>
+      <br />
+      <br />
+
+      <input
+        placeholder='Digite sua idade'
+        value={idade}
+        onChange={ (e) => setIdade(e.target.value) }
+      />
+
+      <br />
+      <br />
+
+      <button onClick={mostrarAluno}>Mostrar aluno</button>
+
+      <hr />
+
+      <h3>Bem vindo: {aluno}</h3>
+      <h4>Idade: {alunoIdade}</h4>
       </div>
   )
 }
